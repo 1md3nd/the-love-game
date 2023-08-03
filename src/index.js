@@ -5,6 +5,7 @@ const cors = require('cors');
 const userRouter = require('./routes/userRoutes');
 const rockRouter = require('./routes/rockpaperRoutes');
 const noteRouter = require('./routes/noteRoutes');
+require('dotenv').config()
 
 const app = express();
 app.use(cors());
@@ -23,7 +24,7 @@ app.get('/',(req,res) =>{
     res.send('HEllo')
 });
 
-mongoose.connect('mongodb+srv://anurag:MpNRfZtZAQD5hefL@cluster0.rdkfqxh.mongodb.net/?retryWrites=true&w=majority')
+mongoose.connect(process.env.MONGODB)
 .then(()=>{
     app.listen(5000,() =>{
         console.log('Server started on port : 5000');
